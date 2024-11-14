@@ -3,45 +3,20 @@ package com.example.freshfieldfarmer
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.freshfieldfarmer.ui.theme.FreshFieldFarmerTheme
+import androidx.navigation.compose.rememberNavController
+import com.example.freshfieldfarmer.navigation.AppNavHost
+import com.example.freshfieldfarmer.viewmodel.AuthViewModel
+import com.example.freshfieldfarmer.viewmodel.ProductViewModel
 
 class MainActivity : ComponentActivity() {
+    private val authViewModel = AuthViewModel()
+    private val productViewModel = ProductViewModel() // Add ProductViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContent {
-            FreshFieldFarmerTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            val navController = rememberNavController()
+            AppNavHost(navController, authViewModel, productViewModel) // Pass both ViewModels
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FreshFieldFarmerTheme {
-        Greeting("Android")
     }
 }
