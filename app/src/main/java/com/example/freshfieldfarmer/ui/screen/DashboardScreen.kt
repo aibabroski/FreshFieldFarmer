@@ -1,4 +1,4 @@
-package com.example.freshfieldfarmer.ui
+package com.example.freshfieldfarmer.ui.screen
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
